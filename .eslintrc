@@ -1,0 +1,9 @@
+{
+    "extends": ["xo/esnext"],
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+      "no-mixed-spaces-and-tabs": ["error", "smart-tabs"]
+    }
+}
