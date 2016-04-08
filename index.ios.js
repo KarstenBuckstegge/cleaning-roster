@@ -13,6 +13,9 @@ const ROOMMATES = [
       bathroom: 0,
       kitchen: 0,
       hall: 0,
+      trash: 0,
+      paper: 0,
+      glas: 0,
     },
   },
   {
@@ -21,6 +24,9 @@ const ROOMMATES = [
       bathroom: 0,
       kitchen: 0,
       hall: 0,
+      trash: 0,
+      paper: 0,
+      glas: 0,
     },
   },
   {
@@ -29,6 +35,9 @@ const ROOMMATES = [
       bathroom: 0,
       kitchen: 0,
       hall: 0,
+      trash: 0,
+      paper: 0,
+      glas: 0,
     },
   },
   {
@@ -37,6 +46,9 @@ const ROOMMATES = [
       bathroom: 0,
       kitchen: 0,
       hall: 0,
+      trash: 0,
+      paper: 0,
+      glas: 0,
     },
   },
 ];
@@ -58,6 +70,15 @@ class cleaningroster extends Component {
           </Text>
           <Text style={styles.duty}>
           Flur: {roommate.duties.hall}
+          </Text>
+          <Text style={styles.duty}>
+          Müll: {roommate.duties.trash}
+          </Text>
+          <Text style={styles.duty}>
+          Papier: {roommate.duties.paper}
+          </Text>
+          <Text style={styles.duty}>
+          Alt-Glas: {roommate.duties.glas}
           </Text>
         </View>
       );
