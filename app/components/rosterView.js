@@ -2,6 +2,7 @@ import React, {
   StyleSheet,
   View,
   Text,
+  TouchableHighlight,
   PropTypes,
 } from 'react-native';
 
@@ -26,46 +27,79 @@ const styles = StyleSheet.create({
   duty: {
     textAlign: 'center',
     color: '#333333',
-    marginBottom: 5,
+    paddingBottom: 10,
   },
 });
 
-export default function RosterView(props) {
-  const roommatesViewData = props.roster.map((roommate) => {
-    return (
-      <View style={styles.roommate} key={roommate.name}>
-        <Text style={styles.name}>
-          {roommate.name}
-        </Text>
-        <Text style={styles.duty}>
-          Bad: {roommate.duties.bathroom}
-        </Text>
-        <Text style={styles.duty}>
-          Küche: {roommate.duties.kitchen}
-        </Text>
-        <Text style={styles.duty}>
-          Flur: {roommate.duties.hall}
-        </Text>
-        <Text style={styles.duty}>
-          Müll: {roommate.duties.trash}
-        </Text>
-        <Text style={styles.duty}>
-          Papier: {roommate.duties.paper}
-        </Text>
-        <Text style={styles.duty}>
-          Alt-Glas: {roommate.duties.glas}
-        </Text>
-      </View>
-    );
-  });
-
-  RosterView.propTypes = {
-    roster: PropTypes.array,
-  };
-
-  return (
+const RosterView = props => (
     <View style={styles.container}>
-      { roommatesViewData }
+      {
+        props.roster.map((roommate) => {
+          return (
+            <View
+              style={styles.roommate}
+              key={roommate.name}
+            >
+              <Text style={styles.name}>
+                {roommate.name}
+              </Text>
+
+              <TouchableHighlight
+                onPress={() => {props.increaseDuty(roommate.name, 'bathroom');}}
+              >
+                <Text style={styles.duty}>
+                  Bad: {roommate.duties.bathroom}
+                </Text>
+              </TouchableHighlight>
+
+              <TouchableHighlight
+                onPress={() => {props.increaseDuty(roommate.name, 'kitchen');}}
+              >
+                <Text style={styles.duty}>
+                  Küche: {roommate.duties.kitchen}
+                </Text>
+              </TouchableHighlight>
+
+              <TouchableHighlight
+                onPress={() => {props.increaseDuty(roommate.name, 'hall');}}
+              >
+                <Text style={styles.duty}>
+                  Flur: {roommate.duties.hall}
+                </Text>
+              </TouchableHighlight>
+
+              <TouchableHighlight
+                onPress={() => {props.increaseDuty(roommate.name, 'trash');}}
+              >
+                <Text style={styles.duty}>
+                  Müll: {roommate.duties.trash}
+                </Text>
+              </TouchableHighlight>
+
+              <TouchableHighlight
+                onPress={() => {props.increaseDuty(roommate.name, 'paper');}}
+              >
+                <Text style={styles.duty}>
+                  Papier: {roommate.duties.paper}
+                </Text>
+              </TouchableHighlight>
+
+              <TouchableHighlight
+                onPress={() => {props.increaseDuty(roommate.name, 'glas');}}
+              >
+                <Text style={styles.duty}>
+                  Alt-Glas: {roommate.duties.glas}
+                </Text>
+              </TouchableHighlight>
+            </View>
+          );
+        })
+      }
     </View>
-  );
-}
+);
+
+RosterView.propTypes = {
+  roster: PropTypes.array,
+  increaseDuty: PropTypes.func,
+};
+export default RosterView;

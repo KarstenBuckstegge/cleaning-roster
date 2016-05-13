@@ -8,8 +8,7 @@ import App from '../components/app';
 import rosterReducer from '../reducers/rosterReducer';
 
 const logger = createLogger();
-const createStoreWithMiddleware = applyMiddleware(logger)(createStore);
-const store = createStoreWithMiddleware(rosterReducer);
+const store = applyMiddleware(logger)(createStore)(rosterReducer);
 
 export default function Wrapper() {
   return (
