@@ -1,35 +1,48 @@
-import React, { PropTypes, } from 'react-native';
+import React, {
+  PropTypes,
+  AsyncStorage,
+} from 'react-native';
 
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 
-import { increaseDuty, } from '../actions/rosterActions';
+import { setCurrentRoommate, increaseDuty, } from '../actions/rosterActions';
 
+import LoadingView from './LoadingView';
+import LoginView from './LoginView';
 import RosterView from './rosterView';
 
 export default function App(props) {
+  // return (
+  //   <RosterView
+  //     roster={props.state.roster}
+  //     increaseDuty={props.increaseDuty}
+  //   />
+  // );
+
   return (
-    <RosterView
-      roster={props.roster}
-      increaseDuty={props.increaseDuty}
+    <LoginView
+      setCurrentRoommate={props.setCurrentRoommate}
     />
   );
 }
 
 const stateToProps = (state) => {
   return {
-    roster: state,
+    state,
   };
 };
 
 const dispatchToProps = (dispatch) => (
   bindActionCreators({
+    setCurrentRoommate,
     increaseDuty,
   }, dispatch)
 );
 
 App.propTypes = {
-  roster: PropTypes.array,
+  state: PropTypes.object,
+  setCurrentRoommate: PropTypes.func,
   increaseDuty: PropTypes.func,
 };
 
