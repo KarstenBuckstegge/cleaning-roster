@@ -4,25 +4,35 @@ import React, { PropTypes, } from 'react';
 
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
+import { Router, Scene, } from 'react-native-router-flux';
 
 import { setCurrentRoommate, increaseDuty, } from '../actions/rosterActions';
 
-// import LoadingView from './LoadingView';
 import LoginView from './LoginView';
-// import RosterView from './rosterView';
+import RosterView from './rosterView';
 
 function App(props) {
-  // return (
-  //   <RosterView
-  //     roster={props.state.roster}
-  //     increaseDuty={props.increaseDuty}
-  //   />
-  // );
-
   return (
-    <LoginView
-      setCurrentRoommate={props.setCurrentRoommate}
-    />
+    <Router>
+      <Scene key="root">
+        <Scene
+          key="login"
+          component={LoginView}
+          title="WhoAreYou"
+          initial
+
+          setCurrentRoommate={props.setCurrentRoommate}
+        />
+        <Scene
+          key="roster"
+          component={RosterView}
+          title="Roster"
+
+          roster={props.state.roster}
+          increaseDuty={props.increaseDuty}
+        />
+      </Scene>
+    </Router>
   );
 }
 

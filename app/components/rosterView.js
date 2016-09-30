@@ -34,6 +34,9 @@ const styles = StyleSheet.create({
 
 const RosterView = props => (
     <View style={styles.container}>
+    <Text>
+      {props.currentRoommate}
+    </Text>
       {
         props.roster.map((roommate) => {
           return (
@@ -100,6 +103,7 @@ const RosterView = props => (
 );
 
 RosterView.propTypes = {
+  currentRoommate: PropTypes.string,
   roster: PropTypes.array,
   increaseDuty: PropTypes.func,
 };

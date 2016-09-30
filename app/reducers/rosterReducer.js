@@ -1,5 +1,6 @@
 import actionTypes from '../actions/actionTypes';
 import { AsyncStorage, } from 'react-native';
+import { Actions, } from 'react-native-router-flux';
 
 const initialState = {
   currentRoommate: '',
@@ -66,6 +67,7 @@ export default function rosterReducer(state = initialState, action = {}) {
       });
     case actionTypes.SET_CURRENT_ROOMMATE:
       AsyncStorage.setItem('currentRoommate', action.payload.roommate);
+      Actions.roster({ currentRoommate: action.payload.roommate, });
       return Object.assign({}, state, {
         currentRoommate: action.payload.roommate,
       });
