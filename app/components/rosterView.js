@@ -1,10 +1,11 @@
-import React, {
+import {
   StyleSheet,
   View,
   Text,
   TouchableHighlight,
-  PropTypes,
 } from 'react-native';
+
+import React, { PropTypes, } from 'react';
 
 const styles = StyleSheet.create({
   container: {
