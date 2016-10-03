@@ -1,17 +1,12 @@
-// import ReactNative from 'react-native';
-
 import React, { PropTypes, } from 'react';
 
-import { bindActionCreators, } from 'redux';
-import { connect, } from 'react-redux';
 import { Router, Scene, } from 'react-native-router-flux';
 
-import { setCurrentRoommate, increaseDuty, } from '../actions/rosterActions';
-
 import LoginView from './LoginView';
-import RosterView from './rosterView';
+import MyStatusView from './MyStatusView';
+import RosterView from './RosterView';
 
-function App(props) {
+function App() {
   return (
     <Router>
       <Scene key="root">
@@ -20,34 +15,21 @@ function App(props) {
           component={LoginView}
           title="WhoAreYou"
           initial
-
-          setCurrentRoommate={props.setCurrentRoommate}
+        />
+        <Scene
+          key="myStatus"
+          component={MyStatusView}
+          title="MyStatus"
         />
         <Scene
           key="roster"
           component={RosterView}
           title="Roster"
-
-          roster={props.state.roster}
-          increaseDuty={props.increaseDuty}
         />
       </Scene>
     </Router>
   );
 }
-
-const stateToProps = (state) => {
-  return {
-    state,
-  };
-};
-
-const dispatchToProps = (dispatch) => (
-  bindActionCreators({
-    setCurrentRoommate,
-    increaseDuty,
-  }, dispatch)
-);
 
 App.propTypes = {
   state: PropTypes.object,
@@ -55,4 +37,4 @@ App.propTypes = {
   increaseDuty: PropTypes.func,
 };
 
-export default connect(stateToProps, dispatchToProps)(App);
+export default App;

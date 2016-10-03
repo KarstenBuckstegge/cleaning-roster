@@ -6,6 +6,10 @@ import {
 } from 'react-native';
 
 import React, { PropTypes, } from 'react';
+import { bindActionCreators, } from 'redux';
+import { connect, } from 'react-redux';
+
+import { setCurrentRoommate, } from '../actions/rosterActions';
 
 const styles = StyleSheet.create({
   container: {
@@ -62,7 +66,20 @@ const LoginView = props => (
     </View>
 );
 
+const stateToProps = (state) => {
+  return {
+    state,
+  };
+};
+
+const dispatchToProps = (dispatch) => (
+  bindActionCreators({
+    setCurrentRoommate,
+  }, dispatch)
+);
+
 LoginView.propTypes = {
+  state: PropTypes.object,
   setCurrentRoommate: PropTypes.func,
 };
-export default LoginView;
+export default connect(stateToProps, dispatchToProps)(LoginView);

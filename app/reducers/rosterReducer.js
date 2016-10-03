@@ -67,7 +67,7 @@ export default function rosterReducer(state = initialState, action = {}) {
       });
     case actionTypes.SET_CURRENT_ROOMMATE:
       AsyncStorage.setItem('currentRoommate', action.payload.roommate);
-      Actions.roster({ currentRoommate: action.payload.roommate, });
+      Actions.myStatus({ currentRoommate: action.payload.roommate, });
       return Object.assign({}, state, {
         currentRoommate: action.payload.roommate,
       });
