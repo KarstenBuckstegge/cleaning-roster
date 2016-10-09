@@ -10,29 +10,9 @@ import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
 
 import { setCurrentRoommate, } from '../actions/rosterActions';
+import { common as commonStyles, } from '../styles.js';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  headline: {
-    fontSize: 30,
-    marginBottom: 10,
-    textAlign: 'center',
-    width: 100,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-  },
-  button: {
-    flex: 0.5,
-    padding: 10,
-    backgroundColor: '#BADA55',
-  },
-});
+const styles = StyleSheet.create(commonStyles);
 
 const LoginView = props => (
     <View style={styles.container}>

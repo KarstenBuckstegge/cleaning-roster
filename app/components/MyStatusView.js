@@ -1,4 +1,5 @@
 import {
+  StyleSheet,
   View,
   Text,
   TouchableHighlight,
@@ -7,16 +8,18 @@ import {
 import React, { PropTypes, } from 'react';
 import { bindActionCreators, } from 'redux';
 import { connect, } from 'react-redux';
-
 import { Actions, } from 'react-native-router-flux';
 
 import { increaseDuty, } from '../actions/rosterActions';
+import { common as commonStyles, } from '../styles.js';
+
+const styles = StyleSheet.create(commonStyles);
 
 const MyStatusView = props => (
-    <View>
-    <Text>
-      {`Moinsen ${props.currentRoommate}`}
-    </Text>
+    <View style={styles.container}>
+      <Text style={styles.headline}>
+        {`Moinsen ${props.currentRoommate}`}
+      </Text>
       {
         props.roster.map((roommate) => {
           if (roommate.name === props.currentRoommate) {
@@ -25,11 +28,12 @@ const MyStatusView = props => (
                 key={roommate.name}
               >
               <Text>
-                {'Deine Statistiken'}
+                {'Was hast du heute erledigt?'}
               </Text>
 
               <TouchableHighlight
                 onPress={() => {props.increaseDuty(roommate.name, 'bathroom');}}
+                style={styles.button}
               >
                 <Text>
                   Bad: {roommate.duties.bathroom}
@@ -38,6 +42,7 @@ const MyStatusView = props => (
 
               <TouchableHighlight
                 onPress={() => {props.increaseDuty(roommate.name, 'kitchen');}}
+                style={styles.button}
               >
                 <Text>
                   Küche: {roommate.duties.kitchen}
@@ -46,6 +51,7 @@ const MyStatusView = props => (
 
               <TouchableHighlight
                 onPress={() => {props.increaseDuty(roommate.name, 'hall');}}
+                style={styles.button}
               >
                 <Text>
                   Flur: {roommate.duties.hall}
@@ -54,6 +60,7 @@ const MyStatusView = props => (
 
               <TouchableHighlight
                 onPress={() => {props.increaseDuty(roommate.name, 'trash');}}
+                style={styles.button}
               >
                 <Text>
                   Müll: {roommate.duties.trash}
@@ -62,6 +69,7 @@ const MyStatusView = props => (
 
               <TouchableHighlight
                 onPress={() => {props.increaseDuty(roommate.name, 'paper');}}
+                style={styles.button}
               >
                 <Text>
                   Papier: {roommate.duties.paper}
@@ -70,6 +78,7 @@ const MyStatusView = props => (
 
               <TouchableHighlight
                 onPress={() => {props.increaseDuty(roommate.name, 'glas');}}
+                style={styles.button}
               >
                 <Text>
                   Alt-Glas: {roommate.duties.glas}

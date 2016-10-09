@@ -6,31 +6,11 @@ import {
 
 import React, { PropTypes, } from 'react';
 import { connect, } from 'react-redux';
+import {
+  roster as rosterStyles,
+} from '../styles.js';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  roommate: {
-    flex: 0.5,
-    padding: 10,
-    backgroundColor: '#BADA55',
-  },
-  name: {
-    fontSize: 20,
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-  duty: {
-    textAlign: 'center',
-    color: '#333333',
-    paddingBottom: 10,
-  },
-});
+const styles = StyleSheet.create(rosterStyles);
 
 const RosterView = props => (
     <View style={styles.container}>
