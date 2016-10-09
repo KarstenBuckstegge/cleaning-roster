@@ -1,6 +1,13 @@
 import actionTypes from '../actions/actionTypes';
 
-export const setCurrentRoommate = (roommate) => (
+export const loadingFromStorageSucceeded = roommate => (
+  {
+    type: actionTypes.LOADING_FROM_STORAGE_SUCCEEDED,
+    payload: { roommate, },
+  }
+);
+
+export const setCurrentRoommate = roommate => (
   {
     type: actionTypes.SET_CURRENT_ROOMMATE,
     payload: { roommate, },

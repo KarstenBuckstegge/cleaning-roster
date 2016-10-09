@@ -2,8 +2,10 @@ import actionTypes from '../actions/actionTypes';
 import { AsyncStorage, } from 'react-native';
 import { Actions, } from 'react-native-router-flux';
 
+export const CURRENT_ROOMMATE_KEY = 'currentRoommate';
+
 const initialState = {
-  currentRoommate: 'David',
+  currentRoommate: '',
   roster: [
     {
       name: 'David',
@@ -52,9 +54,15 @@ const initialState = {
   ],
 };
 
-
 export default function rosterReducer(state = initialState, action = {}) {
   switch (action.type) {
+
+    case actionTypes.LOADING_FROM_STORAGE_SUCCEEDED:
+      Actions.myStatus({ currentRoommate: action.payload.roommate, type: 'reset', });
+      return Object.assign({}, state, {
+        currentRoommate: action.payload.roommate,
+      });
+
     case actionTypes.INCREASE_DUTY:
       return Object.assign({}, state, { roster:
         state.roster.map((roommate) => {
@@ -65,12 +73,14 @@ export default function rosterReducer(state = initialState, action = {}) {
           return roomie;
         }),
       });
+
     case actionTypes.SET_CURRENT_ROOMMATE:
-      AsyncStorage.setItem('currentRoommate', action.payload.roommate);
+      AsyncStorage.setItem(CURRENT_ROOMMATE_KEY, action.payload.roommate);
       Actions.myStatus({ currentRoommate: action.payload.roommate, });
       return Object.assign({}, state, {
         currentRoommate: action.payload.roommate,
       });
+
     default:
       return state;
   }
