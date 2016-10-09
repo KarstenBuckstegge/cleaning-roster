@@ -1,0 +1,1 @@
+{ "presets": ["react-native", "es2015", "babel-preset-stage-3"] }
