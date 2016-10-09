@@ -3,7 +3,7 @@ import { AsyncStorage, } from 'react-native';
 import { Actions, } from 'react-native-router-flux';
 
 const initialState = {
-  currentRoommate: '',
+  currentRoommate: 'David',
   roster: [
     {
       name: 'David',

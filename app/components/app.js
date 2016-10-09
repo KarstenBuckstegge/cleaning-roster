@@ -6,7 +6,7 @@ import LoginView from './LoginView';
 import MyStatusView from './MyStatusView';
 import RosterView from './RosterView';
 
-function App() {
+const App = props => {
   return (
     <Router>
       <Scene key="root">
@@ -14,12 +14,14 @@ function App() {
           key="login"
           component={LoginView}
           title="WhoAreYou"
-          initial
+          initial={!props.currentRoommate}
         />
         <Scene
           key="myStatus"
           component={MyStatusView}
           title="MyStatus"
+          initial={props.currentRoommate}
+          currentRoommate={props.currentRoommate}
         />
         <Scene
           key="roster"
@@ -29,12 +31,9 @@ function App() {
       </Scene>
     </Router>
   );
-}
-
+};
 App.propTypes = {
-  state: PropTypes.object,
-  setCurrentRoommate: PropTypes.func,
-  increaseDuty: PropTypes.func,
+  currentRoommate: PropTypes.string,
 };
 
 export default App;

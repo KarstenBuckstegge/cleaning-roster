@@ -13,7 +13,7 @@ const store = applyMiddleware(logger)(createStore)(rosterReducer);
 export default function Wrapper() {
   return (
     <Provider store={store}>
-      <App />
+      <App currentRoommate={store.getState().currentRoommate} />
     </Provider>
   );
 }

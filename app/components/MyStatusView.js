@@ -88,6 +88,13 @@ const MyStatusView = props => (
           Was machen die anderen denn so?
         </Text>
       </TouchableHighlight>
+      <TouchableHighlight
+        onPress={() => {Actions.login();}}
+      >
+        <Text>
+          {`Seh ich aus wie 1 ${props.currentRoommate}??`}
+        </Text>
+      </TouchableHighlight>
     </View>
 );
 
