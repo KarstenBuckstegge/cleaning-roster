@@ -2,8 +2,11 @@
     "extends": ["airbnb"],
     "plugins": [
       "react",
-      "react-native"
+      "react-native",
     ],
+    "parserOptions": {
+        "ecmaVersion": 8,
+    },
     "rules": {
       "no-use-before-define": "off",
       "comma-dangle": ["error", "always"],
