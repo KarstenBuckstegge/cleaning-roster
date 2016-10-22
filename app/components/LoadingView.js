@@ -5,19 +5,26 @@ import { connect, } from 'react-redux';
 import { Actions, } from 'react-native-router-flux';
 
 import { getDataFromAsyncStorage, } from '../helpers.js';
-import { loadingFromStorageSucceeded, } from '../actions/rosterActions';
+import { loadingSucceeded, } from '../actions/rosterActions';
 import { CURRENT_ROOMMATE_KEY, } from '../reducers/rosterReducer';
 
 const LoadingView = props => {
-  getDataFromAsyncStorage(CURRENT_ROOMMATE_KEY).then(
-    value => {
-      if (value) {
-        props.loadingFromStorageSucceeded(value);
-      } else {
-        Actions.login();
-      }
+  const getCurrentRoommate = getDataFromAsyncStorage(CURRENT_ROOMMATE_KEY);
+
+  const getRosterData = fetch('https://karsten.vulpecula.uberspace.de/data/cleaning_roster_state.json')
+    .then(data => {
+      return data.json();
+    }).catch(err => {
+      console.error('Loading of roster data failed', err);
+    });
+
+  Promise.all([getCurrentRoommate, getRosterData]).then(values => { // eslint-disable-line comma-dangle, max-len
+    if (typeof values[0] !== 'string') {
+      Actions.login();
+    } else {
+      props.loadingSucceeded(values);
     }
-  );
+  });
 
   return (
     <Text>
@@ -26,12 +33,12 @@ const LoadingView = props => {
   );
 };
 LoadingView.propTypes = {
-  loadingFromStorageSucceeded: PropTypes.func,
+  loadingSucceeded: PropTypes.func,
 };
 
 const dispatchToProps = (dispatch) => (
   bindActionCreators({
-    loadingFromStorageSucceeded,
+    loadingSucceeded,
   }, dispatch)
 );
 

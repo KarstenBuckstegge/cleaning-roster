@@ -57,10 +57,11 @@ const initialState = {
 export default function rosterReducer(state = initialState, action = {}) {
   switch (action.type) {
 
-    case actionTypes.LOADING_FROM_STORAGE_SUCCEEDED:
-      Actions.myStatus({ currentRoommate: action.payload.roommate, type: 'reset', });
+    case actionTypes.LOADING_SUCCEEDED:
+      Actions.myStatus({ type: 'reset', });
       return Object.assign({}, state, {
-        currentRoommate: action.payload.roommate,
+        currentRoommate: action.payload.rosterData[0],
+        roster: action.payload.rosterData[1],
       });
 
     case actionTypes.INCREASE_DUTY:

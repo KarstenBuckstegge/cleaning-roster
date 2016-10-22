@@ -1,9 +1,9 @@
 import actionTypes from '../actions/actionTypes';
 
-export const loadingFromStorageSucceeded = roommate => (
+export const loadingSucceeded = rosterData => (
   {
-    type: actionTypes.LOADING_FROM_STORAGE_SUCCEEDED,
-    payload: { roommate, },
+    type: actionTypes.LOADING_SUCCEEDED,
+    payload: { rosterData, },
   }
 );
 

@@ -115,6 +115,7 @@ MyStatusView.propTypes = {
 
 const stateToProps = (state) => {
   return {
+    currentRoommate: state.currentRoommate,
     roster: state.roster,
   };
 };
